@@ -1,0 +1,110 @@
+SAIDAS:
+HeapMaximo
+	operacoesI_100: 1
+	operacoesA_100: 1
+	operacoesR_100: 1
+	operacoesS_100: 1
+	operacoesI_10000: 152
+	operacoesA_10000: 62
+	operacoesR_10000: 52
+	operacoesS_10000: 80
+	operacoesI_50000: 1349
+	operacoesA_50000: 1329
+	operacoesR_50000: 896
+	operacoesS_50000: 1900
+	operacoesI_100000: 5343
+	operacoesA_100000: 5271
+	operacoesR_100000: 3389
+	operacoesS_100000: 7631
+	operacoesI_500000: 166423
+	operacoesA_500000: 149408
+	operacoesR_500000: 87400
+	operacoesS_500000: 218245
+	operacoesI_800000: 398672
+	operacoesA_800000: 452730
+	operacoesR_800000: 257455
+	operacoesS_800000: 509914
+	
+FIM
+
+NoOrdenadp
+	operacoesI_100: 2
+	operacoesA_100: 1
+	operacoesR_100: 0
+	operacoesS_100: 1
+	operacoesI_10000: 175
+	operacoesA_10000: 94
+	operacoesR_10000: 90
+	operacoesS_10000: 117
+	operacoesI_50000: 2476
+	operacoesA_50000: 2202
+	operacoesR_50000: 2193
+	operacoesS_50000: 2733
+	operacoesI_100000: 9440
+	operacoesA_100000: 19802
+	operacoesR_100000: 9705
+	operacoesS_100000: 11331
+	operacoesI_500000: 268939
+	operacoesA_500000: 454427
+	operacoesR_500000: 239597
+	operacoesS_500000: 295019
+	operacoesI_800000: 662465
+	operacoesA_800000: 1062119
+	operacoesR_800000: 564550
+	operacoesS_800000: 708895
+
+FIM
+
+Ordenado
+	operacoesI_100: 2
+	operacoesA_100: 2
+	operacoesR_100: 1
+	operacoesS_100: 1
+	operacoesI_10000: 279
+	operacoesA_10000: 168
+	operacoesR_10000: 113
+	operacoesS_10000: 116
+	operacoesI_50000: 4759
+	operacoesA_50000: 4046
+	operacoesR_50000: 2780
+	operacoesS_50000: 2786
+	operacoesI_100000: 20872
+	operacoesA_100000: 16827
+	operacoesR_100000: 10556
+	operacoesS_100000: 11834
+	operacoesI_500000: 512210
+	operacoesA_500000: 426119
+	operacoesR_500000: 269769
+	operacoesS_500000: 298279
+	operacoesI_800000: 1348610
+	operacoesA_800000: 1090159
+	operacoesR_800000: 693989
+	operacoesS_800000: 759095
+FIM
+
+HeapTernario
+	operacoesI_100: 1
+	operacoesA_100: 1
+	operacoesR_100: 1
+	operacoesS_100: 1
+	operacoesI_10000: 160
+	operacoesA_10000: 29
+	operacoesR_10000: 15
+	operacoesS_10000: 14
+	operacoesI_50000: 352
+	operacoesA_50000: 563
+	operacoesR_50000: 213
+	operacoesS_50000: 322
+	operacoesI_100000: 1361
+	operacoesA_100000: 2017
+	operacoesR_100000: 802
+	operacoesS_100000: 1168
+	operacoesI_500000: 35155
+	operacoesA_500000: 64389
+	operacoesR_500000: 19650
+	operacoesS_500000: 28195
+	operacoesI_800000: 86813
+	operacoesA_800000: 122178
+	operacoesR_800000: 45534
+	operacoesS_800000: 60691
+FIM
