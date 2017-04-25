@@ -10,7 +10,6 @@ public class ConjuntoDisjuntoLE implements ConjuntoDisjuntoI{
 	public ConjuntoDisjuntoLE() {
 		conjunto = new ArrayList<List<Integer>>();
 	}
-
 	@Override
 	public void makeSet(List<Integer> entrada) {
 		for (Integer x : entrada) {
@@ -41,6 +40,7 @@ public class ConjuntoDisjuntoLE implements ConjuntoDisjuntoI{
 		
 	}
 
+	//Recebe por paramento o representante do conjunto e retorna o indice na lista 
 	private int getConjunto(int x) {
 		int i = 0;
 		for (List<Integer> list : conjunto) {
@@ -51,7 +51,6 @@ public class ConjuntoDisjuntoLE implements ConjuntoDisjuntoI{
 		}
 		return -1;
 	}
-
 	@Override
 	public String toString() {
 		return "ConjuntoDisjuntoLE [conjunto=" + conjunto + "]";

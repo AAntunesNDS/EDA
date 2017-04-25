@@ -7,9 +7,9 @@ import javax.print.attribute.standard.Finishings;
 
 public class ConjuntoDisjunto implements ConjuntoDisjuntoI{
 	int maximo = 0;
+	//int x = 0;
 	int pai[] = null;
 	int rank[] = null;
-	
 	public ConjuntoDisjunto(int maximo) {
 		this.maximo =  maximo;
 		pai = new int[maximo];
@@ -37,8 +37,7 @@ public class ConjuntoDisjunto implements ConjuntoDisjuntoI{
 				rank[y]++;
 		
 	}
-	
-	
+		
 	public int findSet(int x) {
 		if(x != pai[x]){
 			pai[x] = findSet(pai[x]);

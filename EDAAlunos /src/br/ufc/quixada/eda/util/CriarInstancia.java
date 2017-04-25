@@ -15,8 +15,8 @@ import br.ufc.quixada.eda.listaprioridades.HeapMaximo;
  * @author fabio
  *
  */
-public class CriarInstancia {	
-	public static int tamanhoInstancias[] = {100, 10000, 50000, 100000, 500000, 800000};
+public class CriarInstancia {
+	public static int tamanhoInstancias[] = {60, 100, 200, 300, 400, 500, 600, 700, 800, 900};
 	public static void criar(){
 		try {
 			@SuppressWarnings("resource")
@@ -206,4 +206,4 @@ public class CriarInstancia {
 	public static void main(String args[]){
 		criar();
 	}
-}
+	}

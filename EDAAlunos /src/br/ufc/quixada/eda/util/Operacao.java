@@ -1,39 +1,50 @@
 package br.ufc.quixada.eda.util;
 
 /**
- * Classe responsável por armazenar uma operação que será realizada na lista de prioridade.
- * O atributo id contém o identificador da operação sendo as seguintes possibilidades: Inserção: I; Remoção: R; Alteração: A; S: Seleção.
- * O atributo valor terá o valor a ser inserido, o valor que foi removido, o valor que será alterado e o valor com maior prioridade, respectivamente para as operações de inserção, remoção, alteração e seleção.
- * O atributo novoValor terá o novo valor da prioridade para a operação de alteração. Para as demais operações ele terá valor 0(zero).  
+ * Classe responsï¿½vel por armazenar uma operaï¿½ï¿½o que serï¿½ realizada na lista de prioridade.
+ * O atributo id contï¿½m o identificador da operaï¿½ï¿½o sendo as seguintes possibilidades: Inserï¿½ï¿½o: I; Remoï¿½ï¿½o: R; Alteraï¿½ï¿½o: A; S: Seleï¿½ï¿½o.
+ * O atributo valor terï¿½ o valor a ser inserido, o valor que foi removido, o valor que serï¿½ alterado e o valor com maior prioridade, respectivamente para as operaï¿½ï¿½es de inserï¿½ï¿½o, remoï¿½ï¿½o, alteraï¿½ï¿½o e seleï¿½ï¿½o.
+ * O atributo novoValor terï¿½ o novo valor da prioridade para a operaï¿½ï¿½o de alteraï¿½ï¿½o. Para as demais operaï¿½ï¿½es ele terï¿½ valor 0(zero).  
  * @author fabio
  *
  */
 public class Operacao {
-	private String id;
-	private Integer valor;
-	private Integer novoValor;
+	private Integer x;
+	private Integer y;
+	private Integer peso;
 	
-	public Operacao(String id, Integer valor, Integer novoValor) {
-		this.id = id;
-		this.valor = valor;
-		this.novoValor = novoValor;
+	public Operacao(Integer x, Integer y, Integer peso) {
+		this.x = x;
+		this.y = y;
+		this.peso = peso;
 	}
-	public String getId() {
-		return id;
+	public Operacao(Integer x, Integer y) {
+		this.x = x;
+		this.y = y;
 	}
-	public void setId(String id) {
-		this.id = id;
+
+	public Integer getX() {
+		return x;
 	}
-	public Integer getValor() {
-		return valor;
+
+	public void setX(Integer x) {
+		this.x = x;
 	}
-	public void setValor(Integer valor) {
-		this.valor = valor;
+
+	public Integer getY() {
+		return y;
 	}
-	public Integer getNovoValor() {
-		return novoValor;
+
+	public void setY(Integer y) {
+		this.y = y;
 	}
-	public void setNovoValor(Integer novoValor) {
-		this.novoValor = novoValor;
+
+	public Integer getPeso() {
+		return peso;
 	}
+
+	public void setPeso(Integer peso) {
+		this.peso = peso;
+	}
+	
 }
