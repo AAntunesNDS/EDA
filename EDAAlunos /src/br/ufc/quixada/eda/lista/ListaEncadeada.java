@@ -72,13 +72,5 @@ public class ListaEncadeada {
 		return saida;
 	}
 	
-	public static void main(String[] args) {
-		ListaEncadeada ls = new ListaEncadeada();
-		ls.add(1, "Afonso");
-		ls.add(2, "Lucy");
-		ls.add(3, "Neto");
-		ls.add(4, "Teste");
-		System.out.println(ls.toString());
-		System.out.println(ls.size());
-	}
+	
 }

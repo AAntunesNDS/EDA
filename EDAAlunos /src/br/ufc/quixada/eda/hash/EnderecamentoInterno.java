@@ -14,7 +14,7 @@ public class EnderecamentoInterno extends Hash{
 
 	@Override
 	public  Integer fHash(int chave) {
-		return (chave % conflito-1);
+		return (chave % (conflito-1));
 	}
 	@Override
 	public void inserir(Integer chave, String valor) {
@@ -27,29 +27,28 @@ public class EnderecamentoInterno extends Hash{
 			if(tabelaHash[posicao].getProxInt() == -1) {
 				int i = inserirConflito(chave, valor);
 				tabelaHash[posicao].setProxInt(i);
+				return;
 			}
-			else {
-				int i = inserirConflito(chave, valor);
-				int ant = tabelaHash[posicao].getProxInt();
-				tabelaHash[posicao].setProxInt(i);
-				tabelaHash[i].setProxInt(ant);
-				int prox;
-				while(tabelaHash[i].getProxInt() != -1) {
-					prox = tabelaHash[i].getProxInt(); 
-					tabelaHash[i].setProxInt(ant);
-					i = prox;
-				}
+			//Inserir conflito 
+			int i = inserirConflito(chave, valor);
+			if(i == -1) {
+				return; 
 			}
-			
+			int prox = i;
+			int atual = tabelaHash[posicao].getProxInt();
+			while(tabelaHash[atual].getProxInt() != -1) {
+				atual = tabelaHash[atual].getProxInt();
+			}
+			tabelaHash[atual].setProxInt(prox);
 		}
-			
 	}
 	
 	//Retorna o indice 
 	private int inserirConflito(Integer chave, String valor) {
 		int i = conflito;
-		while(tabelaHash[i] != null);
-		if(i == tam-1) System.out.println("Lista Cheia");
+		while(tabelaHash[i] != null) i++;
+		
+		if(i == tam) System.out.println("Lista Cheia");
 		else {
 			tabelaHash[i] = new No(chave, valor);
 			tabelaHash[i].setProxInt(-1);
@@ -60,60 +59,69 @@ public class EnderecamentoInterno extends Hash{
 	}
 	@Override
 	public String buscar(Integer chave) {
-		int posicao = fHash(chave);
-		while(tabelaHash[posicao].getChave() != chave){
-			int i = posicao;
-			int prox;
-			int ant = tabelaHash[posicao].getProxInt();
-			while(tabelaHash[i].getProxInt() != -1) {
-				prox = tabelaHash[i].getProxInt(); 
-				tabelaHash[i].setProxInt(ant);
-				tabelaHash[posicao].setChave(prox);
-			}
+		Integer posicao = fHash(chave);
+		if(tabelaHash[posicao] == null) {
+			return null;
 		}
-		return tabelaHash[posicao].getValor();
+		if(tabelaHash[posicao].getChave() == chave) return tabelaHash[posicao].getValor(); 
+		else if(tabelaHash[posicao].getProxInt() != -1){
+			int atual = tabelaHash[posicao].getProxInt();
+			while(tabelaHash[atual].getProxInt() != -1 &&
+					tabelaHash[atual].getChave() != chave) {				
+				atual = tabelaHash[atual].getProxInt();
+			}			
+			if(tabelaHash[atual].getChave() == chave) return tabelaHash[atual].getValor();
+		}
+		return null;
 	}
 
 	@Override
 	public String remover(Integer chave) {
-		String removido = null;
-		int posicao = fHash(chave);
-		if(tabelaHash[posicao].getChave() == chave){
-			removido = tabelaHash[posicao].getValor();
-			int i = posicao;
-			int prox;
-			int ant = tabelaHash[posicao].getProxInt();
-			while(tabelaHash[i].getProxInt() != -1) {
-				prox = tabelaHash[i].getProxInt(); 
-				tabelaHash[i].setProxInt(ant);
-				tabelaHash[posicao].setChave(prox);
-			}
-			if(tabelaHash[posicao].getChave() != -1){
-				int proxIndice = tabelaHash[posicao].getChave();
-				tabelaHash[posicao].setChave(tabelaHash[proxIndice].getChave());
-				tabelaHash[posicao].setChave(tabelaHash[proxIndice].getChave());
-				tabelaHash[posicao].setValor(tabelaHash[proxIndice].getValor());
-				tabelaHash[proxIndice].setChave(-1);
-				tabelaHash[proxIndice].setChave(posicao);
-			}else{
-				tabelaHash[posicao].setChave(-1);
-
-			}
-		}else{
-			int ant = -1;
-			while(tabelaHash[posicao].getChave() != chave){
-				ant = posicao;
-				posicao = tabelaHash[posicao].getChave();
-			}
-			tabelaHash[ant].setChave(tabelaHash[posicao].getChave());
-			removido = tabelaHash[posicao].getValor();
-			tabelaHash[posicao].setChave(-1);
-			tabelaHash[posicao].setChave(-1);
+		Integer posicao = fHash(chave);
+		int ant = 0;
+		if(tabelaHash[posicao] == null) {
+			return null;
 		}
-		return removido;
-
+		if(tabelaHash[posicao].getChave() == chave && tabelaHash[posicao].getProxInt() == -1){
+			String retorno = tabelaHash[posicao].getValor();
+			tabelaHash[posicao] = null;
+			return retorno;
+		}
+		else if(tabelaHash[posicao].getProxInt() != -1){
+			if(tabelaHash[posicao].getChave() == chave){
+				String retorno = tabelaHash[posicao].getValor(); 
+				Integer prox = tabelaHash[posicao].getProxInt();
+				tabelaHash[posicao] = buscarUltimo(chave);
+				tabelaHash[posicao].setProxInt(prox);
+				return retorno;
+			}
+			int atual = tabelaHash[posicao].getProxInt();
+			while(tabelaHash[atual].getProxInt() != -1 &&
+					tabelaHash[atual].getChave() != chave) {				
+				ant = atual;
+				atual = tabelaHash[atual].getProxInt();
+			}			
+			if(tabelaHash[atual].getChave() == chave) {				
+				tabelaHash[ant].setProxInt(tabelaHash[atual].getProxInt());
+				String retorno = tabelaHash[atual].getValor();
+				tabelaHash[atual] = null;
+				return retorno;
+			}
+		}
+		return null;
 	}
-	
+	private No buscarUltimo(Integer chave) {
+		Integer posicao = fHash(chave);
+		int atual = tabelaHash[posicao].getProxInt();
+		while(tabelaHash[atual].getProxInt() != -1 &&
+				tabelaHash[atual].getChave() != chave) {				
+			atual = tabelaHash[atual].getProxInt();
+		}			
+		No retorno;
+		retorno = tabelaHash[atual];
+		tabelaHash[atual] = null;
+		return retorno;
+	}
 	
 	public String toString() {
 		String saida = "";
