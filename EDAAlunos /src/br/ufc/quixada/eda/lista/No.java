@@ -1,16 +1,16 @@
-	package br.ufc.quixada.eda.lista;
+package br.ufc.quixada.eda.lista;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class No {
+public class No<T> {
 
 	private Integer chave;
-	private String valor;
+	private T valor;
 	private No prox;
 	private Integer proxInt;
 	
-	public No(Integer chave, String valor) {
+	public No(Integer chave, T valor) {
 		this.chave = chave;
 		this.valor = valor;
 	}
@@ -21,10 +21,10 @@ public class No {
 	public void setChave(Integer chave) {
 		this.chave = chave;
 	}
-	public String getValor() {
+	public T getValor() {
 		return valor;
 	}
-	public void setValor(String valor) {
+	public void setValor(T valor) {
 		this.valor = valor;
 	}
 	public No getProx() {
@@ -44,9 +44,8 @@ public class No {
 
 	@Override
 	public String toString() {
-		return chave + ": " + valor + " |"
-				+ proxInt;
+		return "No [chave=" + chave + ", valor=" + valor + ", prox=" + prox
+				+ "]";
 	}
-	
 	
 }

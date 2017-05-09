@@ -2,21 +2,21 @@ package br.ufc.quixada.eda.hash;
 
 import br.ufc.quixada.eda.lista.ListaEncadeada;
 
-public class EnderecamentoExterno extends Hash{
+public class EnderecamentoExterno<T> extends Hash<T>{
 
-	private ListaEncadeada lista[];
+	private ListaEncadeada<T> lista[];
 	public EnderecamentoExterno(Integer tam) {
 		super(tam);
 		lista = new ListaEncadeada[tam];
 	}
 
 	@Override
-	public void inserir(Integer chave,String valor) {
+	public void inserir(Integer chave,T valor) {
 		Integer posicao = fHash(chave);
 		if(lista[posicao] == null) {
 			lista[posicao] = new ListaEncadeada();
 		}
-		String retorno = lista[posicao].buscar(chave);
+		T retorno = (T) lista[posicao].buscar(chave);
 		if( retorno == null) 
 			lista[posicao].add(chave, valor);
 		else
@@ -24,16 +24,16 @@ public class EnderecamentoExterno extends Hash{
 	}
 
 	@Override
-	public String buscar(Integer chave) {
+	public T buscar(Integer chave) {
 		Integer posicao = fHash(chave);
-		String retorno = lista[posicao].buscar(chave);
+		T retorno = (T) lista[posicao].buscar(chave);
 		return retorno;
 	}
 
 	@Override
-	public String remover(Integer chave) {
+	public T remover(Integer chave) {
 		Integer posicao = fHash(chave);
-		String retorno = lista[posicao].remover(chave);
+		T retorno = lista[posicao].remover(chave);
 		return retorno;
 	}
 	public String toString(){

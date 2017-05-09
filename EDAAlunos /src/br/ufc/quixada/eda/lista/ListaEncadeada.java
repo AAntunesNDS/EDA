@@ -1,6 +1,6 @@
 package br.ufc.quixada.eda.lista;
 
-public class ListaEncadeada {
+public class ListaEncadeada<T> {
 	private No inicio;
 
 	public int size() {
@@ -12,12 +12,12 @@ public class ListaEncadeada {
 		}
 		return cont;
 	}
-	public void criarLista(Integer chave, String valor) {
+	public void criarLista(Integer chave, T valor) {
 		No inicio = new No(chave, valor);
 		this.inicio = inicio;
 	}
 	
-	public void add(Integer chave, String valor) {
+	public void add(Integer chave, T valor) {
 		if(this.inicio == null) {
 			criarLista(chave, valor);
 			return;
@@ -27,13 +27,13 @@ public class ListaEncadeada {
 		this.inicio = no;		
 	}
 	
-	public String remover(Integer chave) {
+	public T remover(Integer chave) {
 		No ant = null;
 		No atual = this.inicio;
 		if(this.inicio == null) return null; // Caso seja o primeiro da lista
 		if(atual.getChave() == chave) {
 			this.inicio = atual.getProx();
-			return atual.getValor();
+			return (T) atual.getValor();
 		}
 		while(atual != null && atual.getChave() != chave) {
 			ant = atual;
@@ -42,11 +42,11 @@ public class ListaEncadeada {
 		if(atual != null){ 
 			ant.setProx(atual.getProx());
 			//free no Nó
-			return atual.getValor();
+			return (T) atual.getValor();
 		}
 		return null;
 	}
-	public String buscar(Integer chave) {
+	public T buscar(Integer chave) {
 		No ant = null;
 		No atual = this.inicio;
 		if(this.inicio == null) return null;
@@ -55,7 +55,7 @@ public class ListaEncadeada {
 			atual = atual.getProx();
 		}
 		if(atual != null){ 
-			return atual.getValor();
+			return (T) atual.getValor();
 		}
 		return null;
 	}

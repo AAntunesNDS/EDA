@@ -1,8 +1,9 @@
+
 package br.ufc.quixada.eda.hash;
 
 import br.ufc.quixada.eda.lista.No;
 
-public class EnderecamentoInterno extends Hash{
+public class EnderecamentoInterno<T> extends Hash<T>{
 
 	private int conflito;
 	private No tabelaHash[];
@@ -17,7 +18,7 @@ public class EnderecamentoInterno extends Hash{
 		return (chave % (conflito-1));
 	}
 	@Override
-	public void inserir(Integer chave, String valor) {
+	public void inserir(Integer chave, T valor) {
 		Integer posicao = fHash(chave);
 		if(tabelaHash[posicao] == null) {
 			tabelaHash[posicao] = new No(chave, valor);
@@ -44,7 +45,7 @@ public class EnderecamentoInterno extends Hash{
 	}
 	
 	//Retorna o indice 
-	private int inserirConflito(Integer chave, String valor) {
+	private int inserirConflito(Integer chave, T valor) {
 		int i = conflito;
 		while(tabelaHash[i] != null) i++;
 		
@@ -58,38 +59,38 @@ public class EnderecamentoInterno extends Hash{
 		
 	}
 	@Override
-	public String buscar(Integer chave) {
+	public T buscar(Integer chave) {
 		Integer posicao = fHash(chave);
 		if(tabelaHash[posicao] == null) {
 			return null;
 		}
-		if(tabelaHash[posicao].getChave() == chave) return tabelaHash[posicao].getValor(); 
+		if(tabelaHash[posicao].getChave() == chave) return (T) tabelaHash[posicao].getValor(); 
 		else if(tabelaHash[posicao].getProxInt() != -1){
 			int atual = tabelaHash[posicao].getProxInt();
 			while(tabelaHash[atual].getProxInt() != -1 &&
 					tabelaHash[atual].getChave() != chave) {				
 				atual = tabelaHash[atual].getProxInt();
 			}			
-			if(tabelaHash[atual].getChave() == chave) return tabelaHash[atual].getValor();
+			if(tabelaHash[atual].getChave() == chave) return (T) tabelaHash[atual].getValor();
 		}
 		return null;
 	}
 
 	@Override
-	public String remover(Integer chave) {
+	public T remover(Integer chave) {
 		Integer posicao = fHash(chave);
 		int ant = 0;
 		if(tabelaHash[posicao] == null) {
 			return null;
 		}
 		if(tabelaHash[posicao].getChave() == chave && tabelaHash[posicao].getProxInt() == -1){
-			String retorno = tabelaHash[posicao].getValor();
+			T retorno = (T) tabelaHash[posicao].getValor();
 			tabelaHash[posicao] = null;
 			return retorno;
 		}
 		else if(tabelaHash[posicao].getProxInt() != -1){
 			if(tabelaHash[posicao].getChave() == chave){
-				String retorno = tabelaHash[posicao].getValor(); 
+				T retorno = (T) tabelaHash[posicao].getValor(); 
 				Integer prox = tabelaHash[posicao].getProxInt();
 				tabelaHash[posicao] = buscarUltimo(chave);
 				tabelaHash[posicao].setProxInt(prox);
@@ -103,7 +104,7 @@ public class EnderecamentoInterno extends Hash{
 			}			
 			if(tabelaHash[atual].getChave() == chave) {				
 				tabelaHash[ant].setProxInt(tabelaHash[atual].getProxInt());
-				String retorno = tabelaHash[atual].getValor();
+				T retorno =(T) tabelaHash[atual].getValor();
 				tabelaHash[atual] = null;
 				return retorno;
 			}
@@ -132,5 +133,7 @@ public class EnderecamentoInterno extends Hash{
 		}
 		return saida;
 	}
+
+	
 	
 }
